@@ -25,7 +25,8 @@ a tbl
 load nifti as tibble
 }
 \examples{
-system.file("extdata", "example.nii.gz", package="RNifti")
+to_tbl(system.file("extdata", "example.nii.gz", package="RNifti"))
+
 nii <- RNifti::readNifti(file=system.file("extdata", "example.nii.gz", package="RNifti"))
 to_tbl0(nii)
 }

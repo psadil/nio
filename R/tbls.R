@@ -28,6 +28,7 @@ to_tbl0 <- function(value, measure="value"){
 #' @param file [RNifti::$.niftiImage] object to convert into tbl See [RNifti::readNifti()]
 #' @param volumes integer vector. See [RNifti::readNifti()]
 #'
+#' @export
 #' @examples
 #' nii <- RNifti::readNifti(file=system.file("extdata", "example.nii.gz", package="RNifti"))
 #' to_tbl0(nii)
