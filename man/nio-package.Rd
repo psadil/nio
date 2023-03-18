@@ -4,8 +4,8 @@
 \name{nio-package}
 \alias{nio}
 \alias{nio-package}
-\title{nio: What the Package Does (Title Case)}
+\title{nio: Import NIfTI to tbls}
 \description{
-More about what it does (maybe more than one line) Use four spaces when indenting paragraphs within the Description.
+Import NifTI to tbls.
 }
 \keyword{internal}

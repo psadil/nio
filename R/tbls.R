@@ -1,38 +1,56 @@
 
 #' load nifti as tibble
 #'
-#' @param value [RNifti::$.niftiImage] object to convert into tbl
+#' @param x [RNifti::$.niftiImage] object to convert into tbl
 #' @param measure character vector that will be used as the column name for values
 #'
 #' @return a tbl
 #' @export
 #'
-#' @rdname to_tbl0
+#' @rdname to_tbl
 #' @examples
 #' to_tbl(system.file("extdata", "example.nii.gz", package="RNifti"))
 #'
-to_tbl0 <- function(value, measure="value"){
-  checkmate::assert_class(value, "niftiImage")
+to_tbl0 <- function(x, measure="value"){
+  checkmate::assert_class(x, "niftiImage")
   checkmate::assert_character(measure)
 
-  dimnames(value) <- list(
-    "x" = seq_len(dim(value)[1]),
-    "y" = seq_len(dim(value)[2]),
-    "z" = seq_len(dim(value)[3]))
-  cubelyr::as.tbl_cube(value, met_name=measure) |>
-    tibble::as_tibble()
+  dimnames(x) <- sapply(
+    seq_along(dim(x)),
+    \(i) {
+      ids <- seq_len(dim(x)[i])
+      switch(
+        i,
+        `1` = list("x" = ids),
+        `2` = list("y" = ids),
+        `3` = list("z" = ids),
+        `4` = list("t" = ids)
+      )
+    })
+  idx <- arrayInd(
+    1:length(x),
+    .dim = dim(x),
+    .dimnames = dimnames(x),
+    useNames = TRUE) |>
+    tibble::as_tibble() |>
+    dplyr::mutate("{measure}" := as.vector(x))
 }
 
-#' @rdname to_tbl0
+
+#' @rdname to_tbl
 #'
-#' @param file [RNifti::$.niftiImage] object to convert into tbl See [RNifti::readNifti()]
+#' @param file location of nifti to read into tbl See [RNifti::readNifti()]
 #' @param volumes integer vector. See [RNifti::readNifti()]
 #'
 #' @export
 #' @examples
 #' nii <- RNifti::readNifti(file=system.file("extdata", "example.nii.gz", package="RNifti"))
 #' to_tbl0(nii)
+#' to_tbl(system.file("extdata", "example_4d.nii.gz", package="RNifti"))
 to_tbl <- function(file, measure="value", volumes = NULL){
+  checkmate::assert_character(file, len = 1)
+
   value <- RNifti::readNifti(file, volumes = volumes)
   to_tbl0(value, measure = measure)
 }
+

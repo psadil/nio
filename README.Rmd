@@ -1,0 +1,38 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# nio
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+## Installation
+
+You can install the development version of nio from [GitHub](https://github.com/) with:
+
+```{r install, eval=FALSE}
+# install.packages("remotes")
+remotes::install_github("psadil/nio")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(nio)
+to_tbl(system.file("extdata", "example_4d.nii.gz", package="RNifti")) 
+```
+

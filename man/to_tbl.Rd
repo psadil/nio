@@ -5,16 +5,16 @@
 \alias{to_tbl}
 \title{load nifti as tibble}
 \usage{
-to_tbl0(value, measure = "value")
+to_tbl0(x, measure = "value")
 
 to_tbl(file, measure = "value", volumes = NULL)
 }
 \arguments{
-\item{value}{\link[RNifti:indexing]{RNifti::$.niftiImage} object to convert into tbl}
+\item{x}{\link[RNifti:indexing]{RNifti::$.niftiImage} object to convert into tbl}
 
 \item{measure}{character vector that will be used as the column name for values}
 
-\item{file}{\link[RNifti:indexing]{RNifti::$.niftiImage} object to convert into tbl See \code{\link[RNifti:readNifti]{RNifti::readNifti()}}}
+\item{file}{location of nifti to read into tbl See \code{\link[RNifti:readNifti]{RNifti::readNifti()}}}
 
 \item{volumes}{integer vector. See \code{\link[RNifti:readNifti]{RNifti::readNifti()}}}
 }
@@ -29,4 +29,5 @@ to_tbl(system.file("extdata", "example.nii.gz", package="RNifti"))
 
 nii <- RNifti::readNifti(file=system.file("extdata", "example.nii.gz", package="RNifti"))
 to_tbl0(nii)
+to_tbl(system.file("extdata", "example_4d.nii.gz", package="RNifti"))
 }
