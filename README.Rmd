@@ -33,6 +33,7 @@ This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
 library(nio)
-to_tbl(system.file("extdata", "example_4d.nii.gz", package="RNifti")) 
+to_tbl(system.file("extdata", "example_4d.nii.gz", package="RNifti")) |>
+  print()
 ```
 
