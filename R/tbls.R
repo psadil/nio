@@ -21,9 +21,9 @@ to_tbl0 <- function(x, measure="value"){
       ids <- seq_len(dim(x)[i])
       switch(
         i,
-        `1` = list("x" = ids),
-        `2` = list("y" = ids),
-        `3` = list("z" = ids),
+        `1` = list("i" = ids),
+        `2` = list("j" = ids),
+        `3` = list("k" = ids),
         `4` = list("t" = ids)
       )
     })
