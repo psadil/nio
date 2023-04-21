@@ -33,7 +33,7 @@ to_tbl0 <- function(x, measure="value"){
     .dimnames = dimnames(x),
     useNames = TRUE) |>
     tibble::as_tibble() |>
-    dplyr::mutate("{measure}" := as.vector(x))
+    dplyr::mutate("{measure}" := as.vector(.env$x))
 }
 
 
